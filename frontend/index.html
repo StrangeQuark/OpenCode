@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/codemirror.css">
+    </link>
+
+    <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.3/theme/darcula.min.css">
+    </link>
+
+    <script type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.3/mode/javascript/javascript.min.js">
+    </script>
+
+    <script type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/codemirror.js">
+    </script>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <style>
+    html, body
+    {
+        padding: 0;
+        margin: 0;
+        height: 100%;
+    }
+
+    .CodeMirror {
+      height: 100%;
+    }
+
+    .editor-container {
+      height: 100%;
+      width: 70%;
+      float: left;
+    }
+
+    .editor-toolbar {
+      height: 5%;
+      width: calc(100% - 2px);
+      background-color: white;
+      border-color: black;
+      border-style: solid;
+      border-width: 2px;
+    }
+
+    .editor-toolbar * {
+      height: 100%;
+      outline: none;
+    }
+
+    .editor-div {
+      height: 100%;
+      width: 100%;
+    }
+
+    .bottom-toolbar {
+      width: 100%;
+      height: 20%;
+    }
+
+    .top-container {
+      float: left;
+      width: 100%;
+      height: 80%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .left-toolbar {
+      height: 100%;
+      width: 30%;
+      float: left;
+    }
+
+    textarea {
+      width: 100%;
+      height: 100%; 
+      box-sizing: border-box;
+      resize: none;
+    }
+
+    button {
+      transition-duration: 0.4s;
+    }
+
+    button:hover {
+      background-color: #4CAF50!important; /* Green */
+      color: white!important;
+    }
+  </style>
+  <body>
+    <div class="top-container">
+      <div id="left-toolbar" class="left-toolbar"></div>
+      <div class="editor-container">
+        <div id="editor-toolbar" class="editor-toolbar">
+          <button id="compile-button" onclick="codeToLogs()">
+            Compile and Run
+          </button>
+          <!-- <label for="themes">Theme:</label> -->
+          <select name="themes" id="themes" onchange="changeTheme(this)">
+            <option value="default">Default</option>
+            <option value="darcula">Darcula</option>
+          </select>
+          <select name="language" id="language">
+            <option value="java">Java</option>
+          </select>
+        </div>
+        <div id="editor" class="editor-div"></div>
+      </div>
+    </div>
+    <div id="response_div" class="bottom-toolbar">
+      <textarea name="response_text_area" id="response_text_area" readonly="true"></textarea>
+    </div>
+    <script>
+      var response_text_area = document.getElementById('response_text_area')
+
+      var editor = CodeMirror(document.querySelector('#editor'), {
+        lineNumbers: true,
+        tabSize: 2,
+        value: 'public class TestClass {\n  public static void main(String[] args) {\n    System.out.println("Hello world!");\n  }\n}',
+        matchBrackets: true,
+        styleActiveLine: true
+      });
+
+      function codeToLogs() {
+        var text = editor.getValue()
+
+        fetch('http://localhost:8080/api/java', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: text
+        }).then(response => response.text().then(
+          function(text) {
+            response_text_area.value = text
+            console.log(text)
+          }
+        ))
+      }
+
+      var html = "<p><strong>Example 1: </strong></p>" +
+      "<pre><strong>Input: </strong> nums1 = [1,3], nums2 = [2] <br>" +
+      "<strong>Output: </strong></pre>"
+      function insertProblemHTML(html) {
+        document.getElementById('left-toolbar').innerHTML = html
+      }
+      insertProblemHTML(html)
+
+      function changeTheme(sel) {
+        var toolbar = document.getElementById('editor-toolbar')
+        var compileButton = document.getElementById('compile-button')
+        var selection = sel.options[sel.selectedIndex].value
+        editor.setOption("theme", selection)
+
+        var elem = document.querySelector('.editor-toolbar *');
+        var style = getComputedStyle(elem);
+
+
+
+        if(selection == 'default') {
+          toolbar.style.backgroundColor = "#ffffff"
+
+          compileButton.style.backgroundColor = "#ffffff"
+          compileButton.style.color = "#000000"
+
+          themes.style.backgroundColor = "#ffffff"
+          themes.style.color = "#000000"
+
+          language.style.backgroundColor = "#ffffff"
+          language.style.color = "#000000"
+
+          style.borderColor = "#ffffff"
+        }
+        else if(selection == 'darcula') {
+          toolbar.style.backgroundColor = "#2b2b2b"
+
+          compileButton.style.backgroundColor = "#2b2b2b"
+          compileButton.style.color = "#a9b7c6"
+
+          themes.style.backgroundColor = "#2b2b2b"
+          themes.style.color = "#a9b7c6"
+
+          language.style.backgroundColor = "#2b2b2b"
+          language.style.color = "#a9b7c6"
+
+          style.borderColor = "#2b2b2b"
+        }
+      }
+    </script>
+  </body>
+</html>
