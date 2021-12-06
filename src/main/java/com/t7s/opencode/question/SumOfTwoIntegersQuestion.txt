@@ -1,0 +1,19 @@
+<html>
+    <p>
+        <strong>
+            Example 1:
+        </strong>
+    </p>
+    <pre>
+        <strong>
+            Input:
+        </strong>
+        num1 = 3, num2 = 5
+    </pre>
+    <pre>
+        <strong>
+            Output: 
+        </strong>
+        8
+    </pre>
+</html>

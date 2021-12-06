@@ -16,8 +16,8 @@ public class JavaController {
     }
 
     @PostMapping
-    public String compileJava(@RequestBody String code) {
-        String logs = javaService.compileJava(code);
+    public String compileAndRunJava(@RequestBody String code) {
+        String logs = javaService.runJava(code);
 
         return logs;
     }
