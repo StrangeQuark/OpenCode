@@ -17,6 +17,8 @@ public class Question {
     )
     private Long id;
     private String name;
+    private String difficulty;
+    private String author;
     @Column(columnDefinition = "TEXT")
     private String questionHTML;
     @Column(columnDefinition = "TEXT")
@@ -32,8 +34,10 @@ public class Question {
 
     }
 
-    public Question(String name, String questionHTML, String editorStartingText, String correctAnswer, String explainationHTML, String testFileText) {
+    public Question(String name, String difficulty, String author, String questionHTML, String editorStartingText, String correctAnswer, String explainationHTML, String testFileText) {
         this.name = name;
+        this.difficulty = difficulty;
+        this.author = author;
         this.questionHTML = questionHTML;
         this.editorStartingText = editorStartingText;
         this.correctAnswer = correctAnswer;
@@ -96,5 +100,21 @@ public class Question {
 
     public void setTestFileText(String testFileText) {
         this.testFileText = testFileText;
+    }
+
+    public String getDifficulty() {
+        return difficulty;
+    }
+
+    public void setDifficulty(String difficulty) {
+        this.difficulty = difficulty;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
     }
 }

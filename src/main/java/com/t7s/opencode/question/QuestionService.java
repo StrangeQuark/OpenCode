@@ -26,4 +26,12 @@ public class QuestionService {
     public Optional<Question> getQuestion(String questionName) {
         return questionRepository.findQuestionByName(questionName);
     }
+
+    public List<Question> getAttemptedQuestions(Long userId) {
+        return questionRepository.findUserAttempts(userId);
+    }
+
+    public List<Question> getCompletedQuestions(Long userId) {
+        return questionRepository.findUserCompletions(userId);
+    }
 }

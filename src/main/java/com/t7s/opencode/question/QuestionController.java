@@ -22,6 +22,16 @@ public class QuestionController {
         return questionService.getAllQuestions();
     }
 
+    @GetMapping(path = "/user-attempts/{userId}")
+    public List<Question> getAttemptedQuestions(@PathVariable("userId") Long userId) {
+        return questionService.getAttemptedQuestions(userId);
+    }
+
+    @GetMapping(path = "/user-completions/{userId}")
+    public List<Question> getCompletedQuestions(@PathVariable("userId") Long userId) {
+        return questionService.getCompletedQuestions(userId);
+    }
+
     @GetMapping(path = "{questionName}")
     public Optional<Question> getQuestion(@PathVariable("questionName") String questionName) {
         return questionService.getQuestion(questionName);
