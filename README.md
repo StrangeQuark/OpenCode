@@ -18,7 +18,7 @@ Once the OpenCode repository cloned and PostgreSQL is installed, users will need
 
 **CREATE DATABASE opencode;**
 
-**GRANT ALL PRIVILEGES ON DATABASE "opencode" TO <<yourUsername>>;**
+**GRANT ALL PRIVILEGES ON DATABASE "opencode" TO \<YourUsername\>;**
 
 **\c opencode**
 
