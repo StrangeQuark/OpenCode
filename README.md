@@ -1,25 +1,23 @@
-# OpenCode
+# User service
 
-OpenCode is a LeetCode clone designed to be completely open source. Users can create submissions for questions which can be reviewed by admins. All questions in OpenCode will be free.
-
-This project is the Spring Boot back-end, the front-end can be found here: https://github.com/StrangeQuark/OpenCode-frontend
+The User Service project is a Spring Boot application that handles user creation, login, deletion, and more for websites
 
 # Tools
 
-The OpenCode back-end uses Spring Boot and PostgreSQL
+The User Service uses Spring Boot and PostgreSQL
 
 It is highly recommended to use IntelliJ for your IDE, as IntelliJ is the IDE used in development
 
 # Installation
 
-Once the OpenCode repository cloned and PostgreSQL is installed, users will need to create an "opencode" table and connect to the database using the following commands:
+Once the User Service repository cloned and PostgreSQL is installed, users will need to create an "userservice" table and connect to the database using the following commands:
 
 **psql**
 
-**CREATE DATABASE opencode;**
+**CREATE DATABASE userservice;**
 
-**GRANT ALL PRIVILEGES ON DATABASE "opencode" TO \<YourUsername\>;**
+**GRANT ALL PRIVILEGES ON DATABASE "userservice" TO \<YourUsername\>;**
 
-**\c opencode**
+**\c userservice**
 
-Now the server can be started in IntelliJ by running the OpenCodeApplication configuration. Download and open the OpenCode front-end to view the website in action
+Now the server can be started in IntelliJ by running the UserServiceApplication configuration
