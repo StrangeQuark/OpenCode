@@ -1,6 +1,6 @@
 package com.t7s.opencode.project;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table
