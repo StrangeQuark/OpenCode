@@ -8,9 +8,9 @@ import com.t7s.opencode.user.UserRole;
 import com.t7s.opencode.user.UserService;
 import com.t7s.opencode.user.Users;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.servlet.view.RedirectView;
 
-import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 
 @Service

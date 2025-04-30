@@ -1,6 +1,6 @@
 package com.t7s.opencode.question;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table

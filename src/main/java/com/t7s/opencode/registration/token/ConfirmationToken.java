@@ -2,7 +2,7 @@ package com.t7s.opencode.registration.token;
 
 import com.t7s.opencode.user.Users;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
